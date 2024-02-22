@@ -10,7 +10,7 @@ from serial import Serial
 FILTER = 15
 # counter = 0
 ser = serial.Serial()
-ser.port = '/dev/ttyUSB1'  # Port 485 for motor
+ser.port = '/dev/ttyUSB0'  # Port 485 for motor
 # ser.port = '/dev/ttyUSB2'
 ser.baudrate = 115200
 ser.timeout = 0.0000001
