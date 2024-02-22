@@ -24,52 +24,50 @@ def mainprog():
         r = 7.5
 
         if controller is not None and len(controller) == 12:
-            Vx = map_range(controller[1], 282, 1722, 10000, -10000)
+            Vx = map_range(controller[1], 282, 1722, -10000, 10000)
             Vy = map_range(controller[0], 282, 1722, -10000, 10000)
-            omega = map_range(controller[3], 282, 1722, 1, -1)
-            print("Vx: ", Vx)
-            print("Vy: ", Vy)
-            print("omega: ", omega)
+            omega = map_range(controller[3], 282, 1722, -1, 1)
 
             M[0] = (Vx - Vy - (lx + ly) * omega) * 1 / r
             M[1] = (Vx + Vy + (lx + ly) * omega) * 1 / r
             M[2] = (Vx + Vy - (lx + ly) * omega) * 1 / r
             M[3] = (Vx - Vy + (lx + ly) * omega) * 1 / r
-            print("M0: ", M[0])
-            print("M1: ", M[1])
-            print("M2: ", M[2])
-            print("M3: ", M[3])
 
-            if Vy < 0:
+            if abs(Vx) == abs(Vy):  # 45-degree movement
                 motor.run_speed(1, M[0])
                 motor.run_speed(2, -M[1])
                 motor.run_speed(3, -M[2])
                 motor.run_speed(4, M[3])
+            elif Vy < 0:
+                motor.run_speed(1, -M[0])  # Reverse direction
+                motor.run_speed(2, M[1])  # Reverse direction
+                motor.run_speed(3, M[2])  # Reverse direction
+                motor.run_speed(4, -M[3])  # Reverse direction
             elif Vy > 0:
-                motor.run_speed(1, M[0])
-                motor.run_speed(2, -M[1])
-                motor.run_speed(3, -M[2])
-                motor.run_speed(4, M[3])
+                motor.run_speed(1, -M[0])  # Reverse direction
+                motor.run_speed(2, M[1])  # Reverse direction
+                motor.run_speed(3, M[2])  # Reverse direction
+                motor.run_speed(4, -M[3])  # Reverse direction
             elif Vx < 0:
-                motor.run_speed(1, M[0])
-                motor.run_speed(2, -M[1])
-                motor.run_speed(3, -M[2])
-                motor.run_speed(4, M[3])
+                motor.run_speed(1, -M[0])  # Reverse direction
+                motor.run_speed(2, M[1])  # Reverse direction
+                motor.run_speed(3, M[2])  # Reverse direction
+                motor.run_speed(4, -M[3])  # Reverse direction
             elif Vx > 0:
-                motor.run_speed(1, M[0])
-                motor.run_speed(2, -M[1])
-                motor.run_speed(3, -M[2])
-                motor.run_speed(4, M[3])
+                motor.run_speed(1, -M[0])  # Reverse direction
+                motor.run_speed(2, M[1])  # Reverse direction
+                motor.run_speed(3, M[2])  # Reverse direction
+                motor.run_speed(4, -M[3])  # Reverse direction
             elif omega >0:
-                motor.run_speed(1, M[0])
-                motor.run_speed(2, -M[1])
-                motor.run_speed(3, -M[2])
-                motor.run_speed(4, M[3])
+                motor.run_speed(1, -M[0])  # Reverse direction
+                motor.run_speed(2, M[1])  # Reverse direction
+                motor.run_speed(3, M[2])  # Reverse direction
+                motor.run_speed(4, -M[3])  # Reverse direction
             elif omega <0 :
-                motor.run_speed(1, M[0])
-                motor.run_speed(2, -M[1])
-                motor.run_speed(3, -M[2])
-                motor.run_speed(4, M[3])
+                motor.run_speed(1, -M[0])  # Reverse direction
+                motor.run_speed(2, M[1])  # Reverse direction
+                motor.run_speed(3, M[2])  # Reverse direction
+                motor.run_speed(4, -M[3])  # Reverse direction
             else:
                 motor.run_speed(1, 0)
                 motor.run_speed(2, 0)
