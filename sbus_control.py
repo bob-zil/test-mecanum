@@ -2,7 +2,7 @@
 import serial
 import numpy as np
 
-ser = serial.Serial('/dev/ttyACM0', 115200, timeout=0.0000001)
+ser = serial.Serial('/dev/ttyUSB1', 115200, timeout=0.0000001)
 
 def read_sbus_data():
     data = []
