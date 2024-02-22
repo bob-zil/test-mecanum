@@ -232,8 +232,8 @@ def mainprog():
 
             M[0] = (Vx - Vy - (lx + ly) * omega) * 1 / r
             M[1] = (Vx + Vy + (lx + ly) * omega) * 1 / r
-            M[2] = (Vx + Vy - (lx + ly) * omega) * 1 / r
-            M[3] = (Vx - Vy + (lx + ly) * omega) * 1 / r
+            M[2] = -(Vx + Vy - (lx + ly) * omega) * 1 / r
+            M[3] = -(Vx - Vy + (lx + ly) * omega) * 1 / r
             print("M0: ", M[0])
             print("M1: ", M[1])
             print("M2: ", M[2])
