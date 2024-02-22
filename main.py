@@ -35,7 +35,7 @@ def mainprog():
             #print(controller[0])
             Vx = map_range(controller[1], 282, 1722, -10000, 10000)
             Vy = map_range(controller[0], 282, 1722, -10000, 10000)
-            omega = map_range(controller[3], 282, 1722, -10000, 10000)
+            omega = map_range(controller[3], 282, 1722, -1, 1)
             print("Vx: ", Vx)
             print("Vy: ", Vy)
             print("omega: ", omega)
