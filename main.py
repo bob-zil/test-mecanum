@@ -26,30 +26,30 @@ def mainprog():
         if controller is not None and len(controller) == 12:
             Vx = map_range(controller[1], 282, 1722, -10000, 10000)
             Vy = map_range(controller[0], 282, 1722, -10000, 10000)
-            omega = map_range(controller[3], 282, 1722, -1, 1)
+            omega = map_range(controller[3], 282, 1722,500, -500)
             print("Vx: ", Vx)
             print("Vy: ", Vy)
             print("omega: ", omega)
 
             M[0] = (Vx - Vy - (lx + ly) * omega) * 1 / r
             M[1] = (Vx + Vy + (lx + ly) * omega) * 1 / r
-            M[2] = (Vx + Vy - (lx + ly) * omega) * 1 / r
-            M[3] = (Vx - Vy + (lx + ly) * omega) * 1 / r
+            M[2] = (Vx - Vy + (lx + ly) * omega) * 1 / r
+            M[3] = (Vx + Vy - (lx + ly) * omega) * 1 / r
             print("M0: ", M[0])
             print("M1: ", M[1])
             print("M2: ", M[2])
             print("M3: ", M[3])
 
             if Vy < 0:
-                motor.run_speed(1, M[0])
-                motor.run_speed(2, -M[1])
-                motor.run_speed(3, -M[2])
-                motor.run_speed(4, M[3])
+                motor.run_speed(1, -M[0])
+                motor.run_speed(2, M[1])
+                motor.run_speed(3, M[2])
+                motor.run_speed(4, -M[3])
             elif Vy > 0:
-                motor.run_speed(1, M[0])
-                motor.run_speed(2, -M[1])
-                motor.run_speed(3, -M[2])
-                motor.run_speed(4, M[3])
+                motor.run_speed(1, -M[0])
+                motor.run_speed(2, M[1])
+                motor.run_speed(3, M[2])
+                motor.run_speed(4, -M[3])
             elif Vx < 0:
                 motor.run_speed(1, M[0])
                 motor.run_speed(2, -M[1])
@@ -70,6 +70,7 @@ def mainprog():
                 motor.run_speed(2, -M[1])
                 motor.run_speed(3, -M[2])
                 motor.run_speed(4, M[3])
+
             else:
                 motor.run_speed(1, 0)
                 motor.run_speed(2, 0)
