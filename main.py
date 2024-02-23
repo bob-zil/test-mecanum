@@ -39,7 +39,6 @@ def mainprog():
             print("M1: ", M[1])
             print("M2: ", M[2])
             print("M3: ", M[3])
-
             if Vy < 0:
                 motor.run_speed(1, -M[0])
                 motor.run_speed(2, M[1])
@@ -51,26 +50,25 @@ def mainprog():
                 motor.run_speed(3, M[2])
                 motor.run_speed(4, -M[3])
             elif Vx < 0:
-                motor.run_speed(1, M[0])
-                motor.run_speed(2, -M[1])
-                motor.run_speed(3, -M[2])
-                motor.run_speed(4, M[3])
+                motor.run_speed(1, -M[0])
+                motor.run_speed(2, M[1])
+                motor.run_speed(3, M[2])
+                motor.run_speed(4, -M[3])
             elif Vx > 0:
-                motor.run_speed(1, M[0])
-                motor.run_speed(2, -M[1])
-                motor.run_speed(3, -M[2])
-                motor.run_speed(4, M[3])
-            elif omega >0:
-                motor.run_speed(1, M[0])
-                motor.run_speed(2, -M[1])
-                motor.run_speed(3, -M[2])
-                motor.run_speed(4, M[3])
-            elif omega <0 :
-                motor.run_speed(1, M[0])
-                motor.run_speed(2, -M[1])
-                motor.run_speed(3, -M[2])
-                motor.run_speed(4, M[3])
-
+                motor.run_speed(1, -M[0])
+                motor.run_speed(2, M[1])
+                motor.run_speed(3, M[2])
+                motor.run_speed(4, -M[3])
+            elif omega >0 and Vx == 0 and Vy == 0:
+                motor.run_speed(1, -M[0])
+                motor.run_speed(2, M[1])
+                motor.run_speed(3, M[2])
+                motor.run_speed(4, -M[3])
+            elif omega <0 and Vx == 0 and Vy == 0:
+                motor.run_speed(1, -M[0])
+                motor.run_speed(2, M[1])
+                motor.run_speed(3, M[2])
+                motor.run_speed(4, -M[3])
             else:
                 motor.run_speed(1, 0)
                 motor.run_speed(2, 0)
